@@ -22,7 +22,9 @@ class SessionsController extends Controller
 
        if (Auth::attempt($credentials)) {
            session()->flash('success', '歡迎回來!');
-           return redirect()->route('users.show', [Auth::user()]);
+           $user =Auth::user();
+           $token = Auth::guard('api')->login($user);
+           return response()->json(['AccessToken' => $token]);
        } else {
            session()->flash('danger', 'email或密碼錯誤');
            return redirect()->back()->withInput();
