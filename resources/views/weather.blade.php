@@ -22,10 +22,8 @@
         
         @foreach($location['weatherElement'] as $weatherElement) 
           <tr>
-            <td rowspan="4">{{$weatherElement['elementName']}}</td>
-          </tr>
+            <td rowspan="3">{{$weatherElement['elementName']}}</td>          
           @foreach($weatherElement['time'] as $time)
-            <tr>
               @switch($weatherElement['elementName'])
                 @case('Wx')
                   <td>{{$time['parameter']['parameterName']}} {{$time['parameter']['parameterValue']}}</td>
