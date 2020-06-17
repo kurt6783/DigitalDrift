@@ -63,7 +63,7 @@ class UsersController extends Controller
 		 // return view('weather')->with('locations', json_decode($locations[0], true));
 		 return view('weather')->with('locations', $locations);
 		}catch (\Exception $e){
-		 var_dump($e)；
+		 var_dump($e);
 		}
     }
 }
