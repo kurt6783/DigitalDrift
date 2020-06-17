@@ -1,36 +1,56 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Title</title>
+    <title>DigitalDrift</title>
   </head>
 
   <body>
-    @foreach($locations as $location)
-      地點 - {{$location['locationName']}}
-      @foreach($location['weatherElement'] as $weatherElement)
-        {{$weatherElement['elementName']}}
-        @foreach($weatherElement['time'] as $time)
-          起始時間 - {{$time['startTime']}}
-          結束時間 - {{$time['endTime']}}
-          {{$time['parameter']['parameterName']}} 
-          @switch($weatherElement['elementName'])
-            @case('Wx')
-              {{$time['parameter']['parameterValue']}} 
-              @break
-            @case('PoP')
-              {{$time['parameter']['parameterUnit']}} 
-              @break
-            @case('MinT')
-              {{$time['parameter']['parameterUnit']}} 
-              @break
-            @case('CI')
-              @break
-            @case('MaxT')
-              {{$time['parameter']['parameterUnit']}} 
-              @break
-          @endswitch         
+    <table  border="1">
+      
+        
+      
+      @foreach($locations as $location)
+        <tr>
+          <td colspan="4">{{$location['locationName']}}</td>
+        </tr>
+        <tr>
+          <td>       </td>
+          <td>數值說明</td>
+          <td>開始時間</td>
+          <td>結束時間</td>
+        </tr>
+        
+        @foreach($location['weatherElement'] as $weatherElement) 
+          <tr>
+            <td rowspan="4">{{$weatherElement['elementName']}}</td>
+          </tr>
+          @foreach($weatherElement['time'] as $time)
+            <tr>
+              @switch($weatherElement['elementName'])
+                @case('Wx')
+                  <td>{{$time['parameter']['parameterName']}} {{$time['parameter']['parameterValue']}}</td>
+                  @break
+                @case('PoP')
+                  <td>{{$time['parameter']['parameterName']}} {{$time['parameter']['parameterUnit']}}</td>
+                  @break
+                @case('MinT')
+                  <td>{{$time['parameter']['parameterName']}} {{$time['parameter']['parameterUnit']}}</td>
+                  @break
+                @case('CI')
+                  <td>{{$time['parameter']['parameterName']}}</td>
+                  @break
+                @case('MaxT')
+                  <td>{{$time['parameter']['parameterName']}} {{$time['parameter']['parameterUnit']}}</td>
+                  @break
+              @endswitch
+              <td>{{$time['startTime']}}</td>
+              <td>{{$time['endTime']}}</td>
+            </tr>
+          @endforeach
         @endforeach
       @endforeach
-    @endforeach
+      
+      
+    </table>
   </body>
 </html>
