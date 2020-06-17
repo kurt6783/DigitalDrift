@@ -14,8 +14,8 @@
           {{ csrf_field() }}
 
           <div class="form-group">
-            <label for="email">email：</label>
-            <input type="text" name="email" class="form-control" value="{{ old('email') }}">
+            <label for="name">account : </label>
+            <input type="text" name="name" class="form-control" value="{{ old('name') }}">
           </div>
 
           <div class="form-group">
